@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
 import { checkValidationData } from '../utils/validation'
-import {  createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
+import {  createUserWithEmailAndPassword , signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {addUser} from '../utils/userSlice'
 
 
 
@@ -14,9 +16,11 @@ const Login = () => {
   const [conditionSignIn , setconditionSignIn] = useState(true)
   const [showMassege , setshowMassege] = useState(null)
   const navigate= useNavigate()
+  const dispatch=useDispatch()
 
   const email=useRef(null);
   const password=useRef(null);
+  const name=useRef(null);
 
   const handleClickButton =()=>{
     //validate the form 
@@ -35,8 +39,23 @@ const Login = () => {
   .then((userCredential) => {
     // Signed up 
     const user = userCredential.user;
+    updateProfile(user, {
+      displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/108977081?v=4"
+    }).then(() => {
+      // Profile updated!
+      // ...
+      const {uid,email , displayName ,photoURL} = auth.currentUser;
+       dispatch(addUser({uid :uid , email:email , displayName:displayName , photoURL:photoURL}));
+      navigate('/browse')
+
+    }).catch((error) => {
+      // An error occurred
+      // ...
+      setshowMassege(error.massage);
+    });
+    
     console.log(user)
-    navigate('/browse')
+  
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -87,7 +106,7 @@ const Login = () => {
         className='absolute w-[447px] h-[630px]  bg-black mx-auto right-0 left-0 my-28'>
           <div className='w-[320px] mx-auto h-[550px] my-10'>
             <h1 className='mx-5 text-white font-bold text-3xl my-10'>{conditionSignIn ? "Sign In" : "Sign up"}</h1>
-            {!conditionSignIn &&<input type="text " placeholder='Enter Name' className='mb-8 p-2 w-full bg-slate-700 rounded-sm ' />}
+            {!conditionSignIn &&<input ref={name} type="text " placeholder='Enter Name' className='mb-8 p-2 w-full bg-slate-700 rounded-sm ' />}
             <input ref={email} type="text " placeholder='EMAIL AND PHONE NUMBER' className='text-white mb-8 p-2 w-full bg-slate-700 rounded-sm' />
 
             <input ref={password} type="password " placeholder='Password' className='text-white p-2 w-full bg-slate-700 rounded-sm mb-10' />
