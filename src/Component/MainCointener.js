@@ -4,6 +4,10 @@ import VideoTitle from './VideoTitle';
 import VideoBackground from './VideoBackground';
 
 const MainConterner = () => {
+
+  
+
+  
     const movies=useSelector((store)=>store.movies?.nowPlayingMovies);
 
     if(!movies){
@@ -12,7 +16,7 @@ const MainConterner = () => {
 
     const mainMovies=movies[0];
 
-   // console.log(mainMovies)
+  
 
     const { original_title , overview ,id}=mainMovies;
 

@@ -6,6 +6,7 @@ import { auth } from '../utils/firebase';
 
 import { useDispatch } from 'react-redux';
 import {addUser} from '../utils/userSlice'
+import Footer from './Footer';
 
 
 
@@ -53,7 +54,7 @@ const Login = () => {
       setshowMassege(error.massage);
     });
     
-    console.log(user)
+   
   
   })
   .catch((error) => {
@@ -75,7 +76,7 @@ const Login = () => {
   .then((userCredential) => {
     // Signed in 
     const user = userCredential.user;
-    console.log(user)
+   
    
   })
   .catch((error) => {
@@ -108,7 +109,7 @@ const Login = () => {
             {!conditionSignIn &&<input ref={name} type="text " placeholder='Enter Name' className='mb-8 p-2 w-full bg-slate-700 rounded-sm ' />}
             <input ref={email} type="text " placeholder='EMAIL AND PHONE NUMBER' className='text-white mb-8 p-2 w-full bg-slate-700 rounded-sm' />
 
-            <input ref={password} type="password " placeholder='Password' className='text-white p-2 w-full bg-slate-700 rounded-sm mb-10' />
+            <input ref={password} type="password" placeholder='Password' className='text-white p-2 w-full bg-slate-700 rounded-sm mb-10' />
             <p className='text-red-500 text-lg'>{showMassege}</p>
             <button className='p-2 w-full bg-red-600 rounded-sm text-white mb-3'
             
@@ -149,6 +150,7 @@ const Login = () => {
 
                
           </form>
+          
     </div>
   )
 }

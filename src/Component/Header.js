@@ -10,6 +10,7 @@ import appStore from '../utils/appStore'
 import { onAuthStateChanged } from "firebase/auth";
 
 import { addUser, removeUser } from '../utils/userSlice'
+import { toggleGptSearchView } from '../utils/gptSlice';
 
 
 const Header = () => {
@@ -18,6 +19,8 @@ const Header = () => {
   const dispatch=useDispatch()
 
   const user=useSelector(store=>store.user)
+
+  const language=useSelector(store=>store.gpt.showGptSearch)
 
   const handleLogOut=()=>{
     signOut(auth).then(() => {
@@ -51,6 +54,10 @@ const Header = () => {
 
     } , [])
 
+    const handleSearchBar=()=>{
+      dispatch(toggleGptSearchView())
+    }
+
   return (
     <div className='flex justify-between w-full absolute px-8 py-2 bg-gradient-to-b from-black z-10'>
       <div className='flex '>
@@ -67,8 +74,24 @@ const Header = () => {
 
     {user&& <div className='flex pr-10 m-4 cursor-pointer  text-white '>
         <ul className='flex '>
-          <li className='pr-4'><CiSearch />l</li>
-          <li className='pr-4'>children</li>
+        {language &&
+          <li className='text-black'>
+             <select>
+              <option value="English">English</option>
+              <option value="Hindi">Hindi</option>
+             </select>
+          </li>
+         }
+          <ul className='flex'>
+            <div onClick={handleSearchBar} className='flex'>
+              <li className='pr-4'><CiSearch /></li>
+              <li className='pr-4'>Search</li>
+            </div>
+            
+          </ul>
+
+       
+
           <li className='pr-4'><IoMdNotificationsOutline /> </li>
           <li className='pr-4'>
             <img className='h-11 w-11' src={user?.photoURL} alt="" />
