@@ -11,6 +11,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { addUser, removeUser } from '../utils/userSlice'
 import { toggleGptSearchView } from '../utils/gptSlice';
+import { changeLanguage } from '../utils/configSlice';
 
 
 const Header = () => {
@@ -54,6 +55,11 @@ const Header = () => {
 
     } , [])
 
+    const handleLanguageChange = (e) => {
+      const selectedLanguage = e.target.value;
+      dispatch(changeLanguage(selectedLanguage));
+    };
+
     const handleSearchBar=()=>{
       dispatch(toggleGptSearchView())
     }
@@ -74,14 +80,14 @@ const Header = () => {
 
     {user&& <div className='flex pr-10 m-4 cursor-pointer  text-white '>
         <ul className='flex '>
-        {language &&
-          <li className='text-black'>
-             <select>
-              <option value="English">English</option>
-              <option value="Hindi">Hindi</option>
-             </select>
-          </li>
-         }
+        {language && (
+              <li className='text-black'>
+                <select onChange={handleLanguageChange} >
+                  <option value='english'>English</option>
+                  <option value='hindi'>Hindi</option>
+                </select>
+              </li>
+            )}
           <ul className='flex'>
             <div onClick={handleSearchBar} className='flex'>
               <li className='pr-4'><CiSearch /></li>
