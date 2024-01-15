@@ -70,7 +70,7 @@ const GptSearchBar = () => {
         <p className="text-gray-400 text-sm md:text-lg">{lang[langKey].subTitle}</p>
       </div>
       
-        <form className='w-11/12 mx-14' onClick={(e)=>e.preventDefault()} >
+        <form className='w-11/12 mx-auto' onClick={(e)=>e.preventDefault()} >
           <div className="flex gap-1">
             <div className="text-white relative w-full flex ">
               <span className='icon-fill text-[22px] md:mt-0 md:text-[36px] absolute left-4 top-3 md:top-5 hidden md:block'>

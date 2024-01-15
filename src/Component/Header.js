@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import {  useDispatch } from 'react-redux'
 import appStore from '../utils/appStore'
 import { onAuthStateChanged } from "firebase/auth";
+import { IoReorderThreeSharp } from "react-icons/io5";
 
 import { addUser, removeUser } from '../utils/userSlice'
 import { toggleGptSearchView } from '../utils/gptSlice';
@@ -65,16 +66,24 @@ const Header = () => {
     }
 
   return (
-    <div className='flex justify-between w-full absolute px-8 py-2 bg-gradient-to-b from-black z-10'>
+    <div className='flex justify-between w-full absolute px-8 py-2 bg-gradient-to-b from-black z-10 '>
       <div className='flex '>
          <img className='w-30 h-24 '  src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png" alt="" />
-     {user &&  <ul className='flex  cursor-pointer text-[12px] text-white'>
-          <li className='m-4  '>Home</li>
-          <li className='m-4  '>TV Shows</li>
-          <li className='m-4  '>Movies</li>
-          <li className='m-4 '>News & Popular</li>
-          <li className='m-4 '>My List</li>
-          <li className='m-4 '>Browse by Languages</li>
+        
+     {user &&  <ul className='flex  cursor-pointer text-[12px] text-white  '>
+           <div className='lg:hidden max-sm:hidden'>
+                <li className='m-4 '><IoReorderThreeSharp /></li>
+           </div>
+           <div className='flex  max-lg:hidden  '>
+               <li className='m-4 '>Home</li>
+               <li className='m-4 '>TV Shows</li>
+               <li className='m-4 '>Movies</li>
+               <li className='m-4'>News & Popular</li>
+               <li className='m-4'>My List</li>
+               <li className='m-4'>Browse by Languages</li>
+           </div>
+          
+         
          </ul>}
       </div>
 
@@ -90,7 +99,7 @@ const Header = () => {
             )}
           <ul className='flex'>
             <div onClick={handleSearchBar} className='flex'>
-              <li className='pr-4'><CiSearch /></li>
+              <li className='pr-4 max-md:hidden'><CiSearch /></li>
               <li className='pr-4'>Search</li>
             </div>
             
@@ -98,12 +107,12 @@ const Header = () => {
 
        
 
-          <li className='pr-4'><IoMdNotificationsOutline /> </li>
-          <li className='pr-4'>
+          <li className='pr-4 max-sm:hidden'><IoMdNotificationsOutline /> </li>
+          <li className='pr-4 max-sm:hidden'>
             <img className='h-11 w-11' src={user?.photoURL} alt="" />
           </li>
 
-          <li onClick={()=> handleLogOut()}>Log out</li>
+          <li  onClick={()=> handleLogOut()}>Log out</li>
         </ul>
       </div>}
       </div>

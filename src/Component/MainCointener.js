@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux'
 import VideoTitle from './VideoTitle';
 import VideoBackground from './VideoBackground';
 
+
 const MainConterner = () => {
 
   
@@ -24,6 +25,7 @@ const MainConterner = () => {
     <div>
         <VideoTitle title={original_title} overview={overview}/>
         <VideoBackground moviesId={id}/>
+       
 
     </div>
   )

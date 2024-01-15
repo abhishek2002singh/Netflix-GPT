@@ -49,17 +49,33 @@ const MoviesList = ({ title, movies }) => {
   const responsive = {
     desktop: {
       
-      breakpoint: { max: 3000, min: 1024 },
+      breakpoint: { max: 3000, min: 1250 },
       items: 6,
     },
+    laptop:{
+      breakpoint: { max: 1250, min: 1024 },
+      items: 5,
+    },
+ 
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 850 },
       items: 4,
     },
+
+    mini_laptop :{
+      breakpoint: { max: 850, min: 500 },
+      items: 3,
+    },
+
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 665, min: 400 },
       items: 2,
     },
+    mini_movile: {
+      breakpoint: { max: 400, min: 0 },
+      items: 1,
+    },
+
   };
 
   if (!movies) {

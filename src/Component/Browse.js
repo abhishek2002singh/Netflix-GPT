@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from './Header'
+import Footer from './Footer'
 import useNowPlayingMovies from '../hooks/useNowPlayingMovies'
 import MainConterner from './MainCointener'
 
@@ -37,11 +38,11 @@ const Browse = () => {
         
         
         
-      
+      <Footer />
         
       </div>
-      
-        
+       
+       
       </div>
    
   )

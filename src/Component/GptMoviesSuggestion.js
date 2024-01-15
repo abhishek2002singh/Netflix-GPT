@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import MoviesList from './MoviesList'
 
+
 const GptMoviesSuggestion = () => {
 
   const gpt =useSelector(store=>store.gpt)
@@ -11,7 +12,7 @@ const GptMoviesSuggestion = () => {
      return null;
 
   return (
-    <div className='p-4 m-4 bg-black'>
+    <div className=' bg-black'>
       <div>
         {
           movieName.map((movienam , index)=>(
@@ -23,7 +24,7 @@ const GptMoviesSuggestion = () => {
           ))
         }
       </div>
-        
+       
     </div>
   )
 }

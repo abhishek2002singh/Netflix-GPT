@@ -96,14 +96,14 @@ const Login = () => {
     <div className='w-full bg-gradient-to-b from-black'>
         <Header />
         <div className='absolute'>
-          <img className=' box-content w-screen z-10' src="https://assets.nflxext.com/ffe/siteui/vlv3/c38a2d52-138e-48a3-ab68-36787ece46b3/eeb03fc9-99c6-438e-824d-32917ce55783/IN-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="screen logo" />
+          <img className=' box-content w-screen z-10 max-md:hidden max-lg:h-screen max-xl:h-screen max-2xl:h-screen' src="https://assets.nflxext.com/ffe/siteui/vlv3/c38a2d52-138e-48a3-ab68-36787ece46b3/eeb03fc9-99c6-438e-824d-32917ce55783/IN-en-20240101-popsignuptwoweeks-perspective_alpha_website_large.jpg" alt="screen logo" />
 
         </div>
         <form
         
              onSubmit={(e)=>e.preventDefault()}
 
-        className='absolute w-[447px] h-[630px]  bg-black mx-auto right-0 left-0 my-28'>
+        className='absolute w-2/5 h-5/6  bg-black mx-auto right-0 left-0 my-28 max-md:w-screen max-md:h-screen '>
           <div className='w-[320px] mx-auto h-[550px] my-10'>
             <h1 className='mx-5 text-white font-bold text-3xl my-10'>{conditionSignIn ? "Sign In" : "Sign up"}</h1>
             {!conditionSignIn &&<input ref={name} type="text " placeholder='Enter Name' className='mb-8 p-2 w-full bg-slate-700 rounded-sm ' />}
